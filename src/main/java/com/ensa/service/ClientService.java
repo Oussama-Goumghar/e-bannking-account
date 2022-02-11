@@ -70,16 +70,19 @@ public class ClientService {
         return clientRepository.findAll();
     }
 
-    public List<Client> getClientsByAgence(String refAgence){
-        Agence agence = agenceService.getAgenceByRef(refAgence);
+    public List<Client> getClientsByAgence(String refAgence)
+    {
+        Optional<Agence> agence = Optional.ofNullable(agenceService.getAgenceByRef(refAgence));
         return clientRepository.findByAgence(agence);
     }
 
-    public Client getByKyc(Kyc kyc) {
+    public Client getByKyc(Kyc kyc)
+    {
         return clientRepository.findByKyc(kyc);
     }
 
-    public Client getByNumIdentite(String numIdent){
+    public Client getByNumIdentite(String numIdent)
+    {
         Kyc kyc = kycService.getByNumIdentite(numIdent);
         return clientRepository.findByKyc(kyc);
     }
